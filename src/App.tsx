@@ -1,0 +1,41 @@
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import "./index.css";
+import LoadingScreen from "./components/LoadingScreen";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Services from "./components/Services";
+import Work from "./components/Work";
+import Journal from "./components/Journal";
+import Explorations from "./components/Explorations";
+import Stats from "./components/Stats";
+import Footer from "./components/Footer";
+
+export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <>
+      <AnimatePresence>
+        {isLoading && (
+          <LoadingScreen onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
+      {!isLoading && (
+        <>
+          <Navbar />
+          <main>
+            <Hero />
+            <Services />
+            <Work />
+            <Journal />
+            <Explorations />
+            <Stats />
+            <Footer />
+          </main>
+        </>
+      )}
+    </>
+  );
+}
