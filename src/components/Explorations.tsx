@@ -1,185 +1,125 @@
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const items = [
   {
-    img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=700&q=80",
     label: "Neural Interface",
-    rotation: -3,
+    span: "row-span-2",
   },
   {
-    img: "https://images.unsplash.com/photo-1581472723648-909f4851d4ae?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1581472723648-909f4851d4ae?w=700&q=80",
     label: "Data Visualization",
-    rotation: 2,
+    span: "",
   },
   {
-    img: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&q=80",
-    label: "Automation Flow",
-    rotation: -2,
-  },
-  {
-    img: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=700&q=80",
     label: "Mobile Concept",
-    rotation: 4,
+    span: "",
   },
   {
-    img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=700&q=80",
+    label: "Automation Flow",
+    span: "row-span-2",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=700&q=80",
     label: "System Architecture",
-    rotation: -1,
+    span: "",
   },
   {
-    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",
+    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=80",
     label: "Circuit Logic",
-    rotation: 3,
+    span: "",
   },
 ];
 
 export default function Explorations() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const col1Ref = useRef<HTMLDivElement>(null);
-  const col2Ref = useRef<HTMLDivElement>(null);
   const [lightbox, setLightbox] = useState<string | null>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (!contentRef.current || !sectionRef.current) return;
-
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        pin: contentRef.current,
-        pinSpacing: false,
-      });
-
-      if (col1Ref.current) {
-        gsap.fromTo(
-          col1Ref.current,
-          { y: 0 },
-          {
-            y: -200,
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
-            },
-          }
-        );
-      }
-
-      if (col2Ref.current) {
-        gsap.fromTo(
-          col2Ref.current,
-          { y: -100 },
-          {
-            y: 100,
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
-            },
-          }
-        );
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const col1Items = items.slice(0, 3);
-  const col2Items = items.slice(3);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-[300vh] bg-bg overflow-hidden"
-    >
-      {/* Pinned center content */}
-      <div
-        ref={contentRef}
-        className="relative z-10 h-screen flex items-center justify-center pointer-events-none"
-      >
-        <div className="text-center px-4">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <div className="w-8 h-px bg-stroke" />
-            <span className="text-xs text-muted uppercase tracking-[0.3em]">
-              Explorations
-            </span>
-            <div className="w-8 h-px bg-stroke" />
+    <section className="bg-bg py-16 md:py-24">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="flex items-end justify-between mb-10 md:mb-14"
+        >
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-px bg-stroke" />
+              <span className="text-xs text-muted uppercase tracking-[0.3em]">
+                Explorations
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
+              Visual{" "}
+              <em className="font-display not-italic italic">playground</em>
+            </h2>
+            <p className="text-muted text-sm mt-3 max-w-md">
+              Experiments and explorations across AI, design, and code.
+            </p>
           </div>
-          <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight mb-4">
-            Visual{" "}
-            <em className="font-display not-italic italic">playground</em>
-          </h2>
-          <p className="text-muted text-sm max-w-xs mx-auto mb-6">
-            Experiments and explorations across AI, design, and code.
-          </p>
           <a
-            href="#"
-            className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-stroke px-5 py-2.5 text-sm text-muted hover:text-text-primary transition-colors duration-300"
+            href="https://dribbble.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex items-center gap-2 rounded-full border border-stroke px-5 py-2.5 text-sm text-muted hover:text-text-primary transition-colors duration-300"
           >
             View Dribbble ↗
           </a>
-        </div>
-      </div>
+        </motion.div>
 
-      {/* Parallax columns */}
-      <div className="absolute inset-0 z-20 flex items-start justify-center pt-[15vh] pointer-events-none">
-        <div className="w-full max-w-[1400px] mx-auto px-8 grid grid-cols-2 gap-12 md:gap-40">
-          {/* Column 1 */}
-          <div ref={col1Ref} className="flex flex-col gap-8 pointer-events-auto">
-            {col1Items.map((item) => (
-              <div
-                key={item.label}
-                className="aspect-square max-w-[320px] rounded-3xl overflow-hidden cursor-pointer group relative"
-                style={{ transform: `rotate(${item.rotation}deg)` }}
-                onClick={() => setLightbox(item.img)}
-              >
-                <img
-                  src={item.img}
-                  alt={item.label}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-bg/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <span className="text-sm text-text-primary font-medium">
-                    {item.label}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* Masonry grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-[auto] gap-4 md:gap-5 auto-rows-[220px] md:auto-rows-[260px]">
+          {items.map((item, i) => (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: i * 0.08,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+              viewport={{ once: true, margin: "-60px" }}
+              className={`relative group rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer bg-surface border border-stroke ${item.span}`}
+              onClick={() => setLightbox(item.img)}
+            >
+              <img
+                src={item.img}
+                alt={item.label}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
 
-          {/* Column 2 */}
-          <div ref={col2Ref} className="flex flex-col gap-8 mt-32 pointer-events-auto">
-            {col2Items.map((item) => (
-              <div
-                key={item.label}
-                className="aspect-square max-w-[320px] ml-auto rounded-3xl overflow-hidden cursor-pointer group relative"
-                style={{ transform: `rotate(${item.rotation}deg)` }}
-                onClick={() => setLightbox(item.img)}
-              >
-                <img
-                  src={item.img}
-                  alt={item.label}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-bg/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <span className="text-sm text-text-primary font-medium">
-                    {item.label}
-                  </span>
-                </div>
+              {/* Halftone */}
+              <div className="absolute inset-0 halftone opacity-10 mix-blend-multiply" />
+
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />
+
+              {/* Hover overlay */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+                style={{ background: "linear-gradient(135deg, rgba(37,99,255,0.15) 0%, rgba(124,58,237,0.15) 100%)" }}
+              />
+
+              {/* Label */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                <span className="text-xs md:text-sm font-medium text-text-primary/90 group-hover:text-text-primary transition-colors">
+                  {item.label}
+                </span>
               </div>
-            ))}
-          </div>
+
+              {/* Expand icon */}
+              <div className="absolute top-3 right-3 w-7 h-7 rounded-full bg-bg/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-white/10">
+                <span className="text-[10px] text-text-primary">↗</span>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
 
@@ -190,20 +130,22 @@ export default function Explorations() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-bg/90 backdrop-blur-xl flex items-center justify-center p-8"
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[100] bg-bg/95 backdrop-blur-xl flex items-center justify-center p-6 md:p-12"
             onClick={() => setLightbox(null)}
           >
             <motion.img
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.88, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
+              exit={{ scale: 0.88, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               src={lightbox}
-              alt="Lightbox"
-              className="max-w-full max-h-full object-contain rounded-2xl"
+              alt="Preview"
+              className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             />
             <button
-              className="absolute top-6 right-6 text-muted hover:text-text-primary text-2xl"
+              className="absolute top-5 right-5 w-10 h-10 rounded-full bg-surface border border-stroke flex items-center justify-center text-muted hover:text-text-primary transition-colors"
               onClick={() => setLightbox(null)}
             >
               ✕
