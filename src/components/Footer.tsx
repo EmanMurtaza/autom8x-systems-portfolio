@@ -66,7 +66,7 @@ export default function Footer() {
               <span className="text-xs text-muted uppercase tracking-[0.3em]">Get in Touch</span>
               <div className="w-8 h-px bg-stroke" />
             </div>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-display italic text-text-primary mb-4 leading-tight">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-display italic mb-4 leading-tight neon-text neon-flicker">
               Let's build together
             </h2>
             <p className="text-muted text-sm md:text-base max-w-md mx-auto mb-10">

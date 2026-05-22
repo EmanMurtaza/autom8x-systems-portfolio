@@ -45,7 +45,7 @@ export default function Journal() {
             </div>
             <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
               Straight{" "}
-              <em className="font-display not-italic italic">talk</em>
+              <em className="font-display not-italic italic neon-soft">talk</em>
             </h2>
             <p className="text-muted text-sm mt-3 max-w-md">
               No fluff — just honest takes on AI, automation, and building things that last.

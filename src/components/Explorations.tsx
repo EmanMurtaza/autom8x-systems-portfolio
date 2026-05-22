@@ -58,7 +58,7 @@ export default function Explorations() {
             </div>
             <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
               Visual{" "}
-              <em className="font-display not-italic italic">playground</em>
+              <em className="font-display not-italic italic neon-soft">playground</em>
             </h2>
             <p className="text-muted text-sm mt-3 max-w-md">
               Experiments and explorations across AI, design, and code.

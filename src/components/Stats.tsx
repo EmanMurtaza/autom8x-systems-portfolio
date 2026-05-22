@@ -46,7 +46,7 @@ export default function Stats() {
               viewport={{ once: true, margin: "-60px" }}
               className="flex flex-col items-center text-center md:px-12"
             >
-              <span className="text-5xl md:text-6xl lg:text-7xl font-display italic text-text-primary mb-2">
+              <span className="text-5xl md:text-6xl lg:text-7xl font-display italic mb-2 neon-text">
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} />
               </span>
               <span className="text-sm font-medium text-text-primary/80 uppercase tracking-[0.2em] mb-1">

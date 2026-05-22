@@ -64,7 +64,7 @@ export default function Services() {
             </div>
             <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
               Our core{" "}
-              <em className="font-display not-italic italic">services</em>
+              <em className="font-display not-italic italic neon-soft">services</em>
             </h2>
             <p className="text-muted text-sm mt-3 max-w-md">
               Everything your business needs to move faster and work smarter.

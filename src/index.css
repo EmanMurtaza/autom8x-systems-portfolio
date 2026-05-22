@@ -11,11 +11,10 @@
   --muted: 0 0% 53%;
   --stroke: 220 15% 14%;
   --accent: 0 0% 96%;
+  --neon: #d946ef;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   @apply bg-bg text-text-primary font-body;
@@ -23,10 +22,52 @@ body {
   margin: 0;
 }
 
-#root {
-  width: 100%;
-  max-width: 100%;
-  text-align: left;
+#root { width: 100%; max-width: 100%; text-align: left; }
+
+/* ── Neon glow – full strength (hero, footer CTA) ── */
+.neon-text {
+  color: #f0abfc;
+  text-shadow:
+    0 0 4px #fff,
+    0 0 11px #fff,
+    0 0 19px #fff,
+    0 0 40px #bc13fe,
+    0 0 80px #bc13fe,
+    0 0 90px #bc13fe,
+    0 0 150px #bc13fe;
+}
+
+/* ── Neon glow – soft (section italic words) ── */
+.neon-soft {
+  color: #e879f9;
+  text-shadow:
+    0 0 5px #e879f9,
+    0 0 15px #a855f7,
+    0 0 30px #7c3aed,
+    0 0 60px #4c1d95;
+}
+
+/* ── Neon flicker on hover for hero title ── */
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #bc13fe,
+      0 0 80px #bc13fe,
+      0 0 90px #bc13fe,
+      0 0 150px #bc13fe;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+    color: #c084fc;
+  }
+}
+
+.neon-flicker:hover {
+  animation: neon-flicker 1.5s infinite alternate;
+  cursor: default;
 }
 
 @layer utilities {
@@ -36,28 +77,17 @@ body {
 }
 
 @keyframes scroll-down {
-  0% { transform: translateY(-100%); }
+  0%   { transform: translateY(-100%); }
   100% { transform: translateY(200%); }
 }
 
 @keyframes role-fade-in {
-  0% { opacity: 0; transform: translateY(8px); }
+  0%   { opacity: 0; transform: translateY(8px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.animate-scroll-down {
-  animation: scroll-down 1.5s ease-in-out infinite;
-}
-
-.animate-role-fade-in {
-  animation: role-fade-in 0.4s ease-out;
-}
+.animate-scroll-down  { animation: scroll-down 1.5s ease-in-out infinite; }
+.animate-role-fade-in { animation: role-fade-in 0.4s ease-out; }
 
 .halftone {
   background-image: radial-gradient(circle, #000 1px, transparent 1px);

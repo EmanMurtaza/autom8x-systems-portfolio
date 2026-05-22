@@ -60,7 +60,7 @@ export default function Work() {
             </div>
             <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
               Things we've{" "}
-              <em className="font-display not-italic italic">shipped</em>
+              <em className="font-display not-italic italic neon-soft">shipped</em>
             </h2>
             <p className="text-muted text-sm mt-3 max-w-md">
               Real projects, real results. Here's a taste of what we've built.
