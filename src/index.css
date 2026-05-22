@@ -11,7 +11,6 @@
   --muted: 0 0% 53%;
   --stroke: 220 15% 14%;
   --accent: 0 0% 96%;
-  --neon: #d946ef;
 }
 
 html { scroll-behavior: smooth; }
@@ -24,50 +23,35 @@ body {
 
 #root { width: 100%; max-width: 100%; text-align: left; }
 
-/* ── Neon glow – full strength (hero, footer CTA) ── */
+/* ─────────────────────────────────────────
+   RETRO NEON — full strength
+   Used on: hero h1, footer CTA h2, stat numbers
+   Layered like a real glass-tube neon sign:
+   white-hot core → purple mid → deep violet halo
+────────────────────────────────────────── */
 .neon-text {
-  color: #f0abfc;
+  color: #ead6ff;
   text-shadow:
-    0 0 4px #fff,
-    0 0 11px #fff,
-    0 0 19px #fff,
-    0 0 40px #bc13fe,
-    0 0 80px #bc13fe,
-    0 0 90px #bc13fe,
-    0 0 150px #bc13fe;
+    0 0  2px #fff,
+    0 0  6px #fff,
+    0 0 14px #c084fc,
+    0 0 30px #9333ea,
+    0 0 55px #7c3aed,
+    0 0 90px #4c1d95;
 }
 
-/* ── Neon glow – soft (section italic words) ── */
+/* ─────────────────────────────────────────
+   RETRO NEON — soft
+   Used on: italic accent words in headings
+   Warm glow, not overpowering
+────────────────────────────────────────── */
 .neon-soft {
-  color: #e879f9;
+  color: #d8b4fe;
   text-shadow:
-    0 0 5px #e879f9,
-    0 0 15px #a855f7,
-    0 0 30px #7c3aed,
-    0 0 60px #4c1d95;
-}
-
-/* ── Neon flicker on hover for hero title ── */
-@keyframes neon-flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    text-shadow:
-      0 0 4px #fff,
-      0 0 11px #fff,
-      0 0 19px #fff,
-      0 0 40px #bc13fe,
-      0 0 80px #bc13fe,
-      0 0 90px #bc13fe,
-      0 0 150px #bc13fe;
-  }
-  20%, 24%, 55% {
-    text-shadow: none;
-    color: #c084fc;
-  }
-}
-
-.neon-flicker:hover {
-  animation: neon-flicker 1.5s infinite alternate;
-  cursor: default;
+    0 0  4px rgba(216, 180, 254, 0.9),
+    0 0 14px rgba(168,  85, 247, 0.75),
+    0 0 30px rgba(124,  58, 237, 0.5),
+    0 0 60px rgba(109,  40, 217, 0.25);
 }
 
 @layer utilities {

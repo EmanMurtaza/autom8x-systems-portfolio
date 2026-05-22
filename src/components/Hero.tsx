@@ -61,7 +61,7 @@ export default function Hero() {
 
         <h1
           ref={nameRef}
-          className="text-6xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight mb-6 opacity-0 neon-text neon-flicker"
+          className="text-6xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight mb-6 opacity-0 neon-text"
         >
           autom8X Systems
         </h1>
