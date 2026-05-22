@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&family=Orbitron:wght@700;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -24,26 +24,25 @@ body {
 #root { width: 100%; max-width: 100%; text-align: left; }
 
 /* ─────────────────────────────────────────
-   RETRO NEON — full strength
-   Used on: hero h1, footer CTA h2, stat numbers
-   Layered like a real glass-tube neon sign:
-   white-hot core → purple mid → deep violet halo
+   CYBERPUNK NEON — full strength
+   White core + purple outline + blue outer halo
+   Mimics the lit glass-tube + outline look
 ────────────────────────────────────────── */
 .neon-text {
-  color: #ead6ff;
+  color: #f5f0ff;
+  -webkit-text-stroke: 1.5px #9333ea;
+  paint-order: stroke fill;
   text-shadow:
-    0 0  2px #fff,
-    0 0  6px #fff,
-    0 0 14px #c084fc,
-    0 0 30px #9333ea,
+    0 0  4px #fff,
+    0 0 12px #e9d5ff,
+    0 0 28px #a855f7,
     0 0 55px #7c3aed,
-    0 0 90px #4c1d95;
+    0 0 90px #4c1d95,
+    0 0 130px #1d4ed8;
 }
 
 /* ─────────────────────────────────────────
-   RETRO NEON — soft
-   Used on: italic accent words in headings
-   Warm glow, not overpowering
+   NEON SOFT — italic accent words
 ────────────────────────────────────────── */
 .neon-soft {
   color: #d8b4fe;

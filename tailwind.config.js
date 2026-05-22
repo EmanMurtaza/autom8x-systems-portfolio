@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         body: ["Inter", "sans-serif"],
         display: ["Instrument Serif", "serif"],
+        orbitron: ["Orbitron", "sans-serif"],
       },
       colors: {
         bg: "hsl(var(--bg))",

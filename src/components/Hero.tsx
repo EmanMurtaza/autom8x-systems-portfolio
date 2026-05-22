@@ -13,16 +13,14 @@ export default function Hero() {
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
     if (nameRef.current) {
-      tl.fromTo(
-        nameRef.current,
+      tl.fromTo(nameRef.current,
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 1.2, delay: 0.1 }
       );
     }
     const blurEls = blurRefs.current.filter(Boolean);
     if (blurEls.length) {
-      tl.fromTo(
-        blurEls,
+      tl.fromTo(blurEls,
         { opacity: 0, filter: "blur(10px)", y: 20 },
         { opacity: 1, filter: "blur(0px)", y: 0, duration: 1, stagger: 0.1 },
         "-=0.9"
@@ -42,26 +40,26 @@ export default function Hero() {
   };
 
   return (
-    <section
-      id="home"
-      className="relative w-full h-screen flex items-center justify-center overflow-hidden"
-    >
+    <section id="home" className="relative w-full h-screen flex items-center justify-center overflow-hidden">
       <HeroVideo overlayClass="bg-black/30" />
       <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg to-transparent z-10" />
 
-      <div className="relative z-20 flex flex-col items-center text-center px-4">
+      {/* Content — pt-24 keeps eyebrow below navbar, pb-24 keeps buttons above SCROLL */}
+      <div className="relative z-20 flex flex-col items-center text-center px-4 pt-24 pb-24 w-full">
+
         <span
           ref={(el) => addBlurRef(el, 0)}
-          className="text-xs text-muted uppercase tracking-[0.35em] mb-8 opacity-0 flex items-center gap-3"
+          className="text-xs text-muted uppercase tracking-[0.35em] mb-6 opacity-0 flex items-center gap-3"
         >
-          <span className="w-6 h-px bg-muted/50" />
+          <span className="w-6 h-px bg-muted/40" />
           Automate · Innovate · Elevate
-          <span className="w-6 h-px bg-muted/50" />
+          <span className="w-6 h-px bg-muted/40" />
         </span>
 
+        {/* Orbitron cyberpunk heading */}
         <h1
           ref={nameRef}
-          className="text-6xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight mb-6 opacity-0 neon-text"
+          className="font-orbitron font-black uppercase tracking-tight leading-none text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-6 opacity-0 neon-text"
         >
           autom8X Systems
         </h1>
@@ -70,23 +68,22 @@ export default function Hero() {
           ref={(el) => addBlurRef(el, 1)}
           className="text-base md:text-lg text-muted mb-3 opacity-0"
         >
-          We help businesses{" "}
+          We{" "}
           <span
             key={roleIndex}
             className="font-display italic text-text-primary animate-role-fade-in inline-block"
           >
             {ROLES[roleIndex]}
           </span>{" "}
-          — without the headache.
+          your business — without the headache.
         </p>
 
         <p
           ref={(el) => addBlurRef(el, 2)}
-          className="text-sm md:text-base text-muted max-w-lg mb-12 opacity-0 leading-relaxed"
+          className="text-sm md:text-base text-muted max-w-lg mb-10 opacity-0 leading-relaxed"
         >
           From AI-powered websites to custom automations that run 24/7 — we
-          build the systems that give you your time back and your business
-          an edge.
+          build the systems that give you your time back and your business an edge.
         </p>
 
         <div ref={(el) => addBlurRef(el, 3)} className="inline-flex gap-4 opacity-0">
@@ -98,10 +95,8 @@ export default function Hero() {
             }}
             className="relative group rounded-full text-sm px-7 py-3.5 bg-text-primary text-bg font-medium transition-all duration-300 hover:scale-105 overflow-visible"
           >
-            <span
-              className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: GRAD, zIndex: -1 }}
-            />
+            <span className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ background: GRAD, zIndex: -1 }} />
             <span className="relative z-10 group-hover:bg-bg group-hover:text-text-primary bg-text-primary text-bg rounded-full transition-colors duration-300">
               See what we do
             </span>
@@ -113,15 +108,14 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="relative group rounded-full text-sm px-7 py-3.5 border-2 border-stroke bg-bg text-text-primary font-medium transition-all duration-300 hover:scale-105 hover:border-transparent overflow-visible"
           >
-            <span
-              className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: GRAD, zIndex: -1 }}
-            />
+            <span className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ background: GRAD, zIndex: -1 }} />
             <span className="relative z-10">Let's talk ↗</span>
           </a>
         </div>
       </div>
 
+      {/* Scroll — absolutely positioned, won't overlap buttons because of pb-24 */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
         <span className="text-xs text-muted uppercase tracking-[0.2em]">SCROLL</span>
         <div className="relative w-px h-10 bg-stroke overflow-hidden">

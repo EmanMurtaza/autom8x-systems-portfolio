@@ -6,26 +6,24 @@ const GRAD = "linear-gradient(135deg, #2563FF 0%, #7C3AED 100%)";
 
 function LogoMark() {
   return (
-    <svg viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-4">
+    <svg viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[22px] h-4">
       <defs>
-        <linearGradient id="ng" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id="ngLogo" x1="0" y1="0" x2="30" y2="22" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="#2563FF" />
           <stop offset="100%" stopColor="#7C3AED" />
         </linearGradient>
       </defs>
-      {/* Alpha/loop left */}
-      <path
-        d="M9 9 C9 5 6.5 2.5 4 3.5 C1.5 4.5 1.5 8.5 3.5 10 C5.5 11.5 8 10.5 9 9 Z"
-        stroke="url(#ng)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="none"
-      />
-      {/* Tail of alpha */}
-      <path
-        d="M9 9 C9 5.5 11 3.5 13 5"
-        stroke="url(#ng)" strokeWidth="1.6" strokeLinecap="round" fill="none"
-      />
-      {/* X right */}
-      <line x1="13" y1="4" x2="21" y2="14" stroke="url(#ng)" strokeWidth="1.7" strokeLinecap="round" />
-      <line x1="21" y1="4" x2="13" y2="14" stroke="url(#ng)" strokeWidth="1.7" strokeLinecap="round" />
+      {/* Outer ring — left */}
+      <circle cx="10" cy="11" r="8.5" stroke="url(#ngLogo)" strokeWidth="2.2" />
+      {/* Inner ring accent */}
+      <circle cx="10" cy="11" r="3.5" stroke="url(#ngLogo)" strokeWidth="1.4" />
+      {/* X mark — right */}
+      <line x1="20" y1="4" x2="29.5" y2="18" stroke="url(#ngLogo)" strokeWidth="2.6" strokeLinecap="round" />
+      <line x1="29.5" y1="4" x2="20" y2="18" stroke="url(#ngLogo)" strokeWidth="2.6" strokeLinecap="round" />
+      {/* Pixel accent dots */}
+      <rect x="0.5" y="0.5" width="2" height="2" fill="url(#ngLogo)" rx="0.3" opacity="0.55" />
+      <rect x="3.5" y="0.5" width="2" height="2" fill="url(#ngLogo)" rx="0.3" opacity="0.35" />
+      <rect x="0.5" y="3.5" width="2" height="2" fill="url(#ngLogo)" rx="0.3" opacity="0.25" />
     </svg>
   );
 }
