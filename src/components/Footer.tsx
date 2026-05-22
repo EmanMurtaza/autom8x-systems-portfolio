@@ -77,7 +77,7 @@ export default function Footer() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* Email */}
               <a
-                href="mailto:autom8xsystems@gmail.com"
+                href="mailto:autom8x.systems@gmail.com"
                 className="inline-flex relative group items-center gap-2 rounded-full border border-stroke px-7 py-3.5 text-sm text-muted hover:text-text-primary transition-colors duration-300 overflow-visible"
               >
                 <span
@@ -85,7 +85,7 @@ export default function Footer() {
                   style={{ background: GRAD, zIndex: -1 }}
                 />
                 <span className="relative z-10 flex items-center gap-2 bg-bg rounded-full px-7 py-3.5 -mx-7 -my-3.5 transition-colors">
-                  autom8xsystems@gmail.com ↗
+                  autom8x.systems@gmail.com ↗
                 </span>
               </a>
 

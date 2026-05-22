@@ -16,7 +16,7 @@ const services = [
     italic: "Solutions",
     description:
       "Stop leaving AI on the table. We plug real intelligence into your product — smarter search, predictive features, custom LLM workflows — so you stay ahead of the curve.",
-    tags: ["OpenAI", "Claude API", "RAG", "Fine-tuning"],
+    tags: ["LLMs", "RAG", "Fine-tuning", "Vector Search"],
     img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80",
   },
   {

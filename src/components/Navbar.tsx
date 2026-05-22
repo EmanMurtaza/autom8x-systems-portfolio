@@ -40,8 +40,21 @@ export default function Navbar() {
 
   const scrollTo = (section: string) => {
     setActive(section);
-    const el = document.getElementById(section.toLowerCase());
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    const id = section.toLowerCase();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    // We're probably on a blog post — clear the hash to render home, then scroll
+    if (window.location.hash) {
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+      window.dispatchEvent(new HashChangeEvent("hashchange"));
+    }
+    // Wait for home to render, then scroll
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
   };
 
   return (
@@ -89,7 +102,11 @@ export default function Navbar() {
 
         {/* Say hi */}
         <a
-          href="mailto:autom8xsystems@gmail.com"
+          href="#contact"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo("Contact");
+          }}
           className="relative text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-muted hover:text-text-primary group overflow-visible"
         >
           <span
