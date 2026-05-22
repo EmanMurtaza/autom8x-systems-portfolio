@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const NAV_LINKS = ["Home", "Services", "Work", "Contact"];
+const NAV_LINKS = ["Home", "Services", "Work", "Blogs"];
 
 const GRAD = "linear-gradient(135deg, #2563FF 0%, #7C3AED 100%)";
 
