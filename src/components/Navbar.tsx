@@ -113,8 +113,8 @@ export default function Navbar() {
             className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{ background: GRAD, zIndex: -1 }}
           />
-          <span className="relative z-10 bg-surface rounded-full px-3 py-1.5 backdrop-blur-md flex items-center gap-1">
-            Say hi ↗
+          <span className="relative z-10 bg-surface rounded-full px-3 py-1.5 backdrop-blur-md flex items-center">
+            Contact us
           </span>
         </a>
       </div>

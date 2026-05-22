@@ -18,7 +18,7 @@ export const blogPosts: BlogPost[] = [
     italicWord: "Growing",
     excerpt:
       "Most businesses don't have a growth problem — they have a leverage problem. Here's how AI changes the math.",
-    img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1600&q=80",
+    img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=72&auto=format",
     readTime: "5 min read",
     date: "May 2026",
     author: "autom8X Team",
@@ -85,7 +85,7 @@ export const blogPosts: BlogPost[] = [
     italicWord: "Pipeline",
     excerpt:
       "A real case study: turning a chaotic spreadsheet-and-Slack sales process into an automated machine in under a week.",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80",
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=72&auto=format",
     readTime: "8 min read",
     date: "Apr 2026",
     author: "autom8X Team",
@@ -174,7 +174,7 @@ export const blogPosts: BlogPost[] = [
     italicWord: "Work",
     excerpt:
       "The dirty secret of \"AI chatbots\": 90% are useless. The 10% that work all do the same five things right.",
-    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80",
+    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=72&auto=format",
     readTime: "7 min read",
     date: "Mar 2026",
     author: "autom8X Team",
@@ -248,7 +248,7 @@ export const blogPosts: BlogPost[] = [
     italicWord: "Process",
     excerpt:
       "How we ship real, paying-customer-ready products in 14 days. No magic — just ruthless scope and the right stack.",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=80",
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=72&auto=format",
     readTime: "6 min read",
     date: "Feb 2026",
     author: "autom8X Team",

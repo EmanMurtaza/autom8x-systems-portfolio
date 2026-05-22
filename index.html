@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Preconnects so font & image fetches start immediately on first paint -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://stream.mux.com" />
+
+    <!-- Critical CSS: dark background applied before stylesheet downloads so no white flash -->
+    <style>
+      html, body { background: #070d1a; color: #f5f0ff; margin: 0; }
+    </style>
+
     <title>Autom8X Systems — Web, AI & Automation</title>
     <meta name="description" content="Expert web development, AI solutions, business automation, and AI assistants." />
   </head>

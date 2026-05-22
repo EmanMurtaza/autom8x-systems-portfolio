@@ -12,7 +12,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
-    const duration = 2700;
+    const duration = 1300;
     const start = performance.now();
     const tick = (now: number) => {
       const elapsed = now - start;
@@ -21,7 +21,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       if (progress < 1) {
         requestAnimationFrame(tick);
       } else {
-        setTimeout(onComplete, 400);
+        setTimeout(onComplete, 200);
       }
     };
     requestAnimationFrame(tick);
@@ -30,7 +30,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       setWordIndex((i) => (i + 1) % words.length);
-    }, 900);
+    }, 450);
     return () => clearInterval(interval);
   }, []);
 

@@ -8,7 +8,7 @@ const services = [
     description:
       "Your website should work as hard as you do. We build fast, beautiful, custom web apps — from sharp landing pages to full SaaS platforms — that actually convert.",
     tags: ["React", "Next.js", "Node.js", "TypeScript"],
-    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=640&q=70&auto=format",
   },
   {
     id: "02",
@@ -17,7 +17,7 @@ const services = [
     description:
       "Stop leaving AI on the table. We plug real intelligence into your product — smarter search, predictive features, custom LLM workflows — so you stay ahead of the curve.",
     tags: ["LLMs", "RAG", "Fine-tuning", "Vector Search"],
-    img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=640&q=70&auto=format",
   },
   {
     id: "03",
@@ -26,7 +26,7 @@ const services = [
     description:
       "If your team is doing something on repeat, we can automate it. We connect your tools, clean up your workflows, and build pipelines that just run — no babysitting required.",
     tags: ["n8n", "Zapier", "Make", "APIs"],
-    img: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=640&q=70&auto=format",
   },
   {
     id: "04",
@@ -35,7 +35,7 @@ const services = [
     description:
       "What if your best team member never slept? We build AI assistants trained on your business — handling support, qualifying leads, and answering questions at any hour.",
     tags: ["Chatbots", "Voice AI", "Knowledge Base", "CRM"],
-    img: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=640&q=70&auto=format",
   },
 ];
 
@@ -101,6 +101,8 @@ export default function Services() {
               <img
                 src={s.img}
                 alt={s.title}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 halftone opacity-20 mix-blend-multiply" />

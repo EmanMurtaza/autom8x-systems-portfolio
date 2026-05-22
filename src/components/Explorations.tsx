@@ -3,32 +3,32 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const items = [
   {
-    img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=700&q=80",
+    img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=560&q=70&auto=format",
     label: "Neural Interface",
     span: "row-span-2",
   },
   {
-    img: "https://images.unsplash.com/photo-1581472723648-909f4851d4ae?w=700&q=80",
+    img: "https://images.unsplash.com/photo-1581472723648-909f4851d4ae?w=560&q=70&auto=format",
     label: "Data Visualization",
     span: "",
   },
   {
-    img: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=700&q=80",
+    img: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=560&q=70&auto=format",
     label: "Mobile Concept",
     span: "",
   },
   {
-    img: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=700&q=80",
+    img: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=560&q=70&auto=format",
     label: "Automation Flow",
     span: "row-span-2",
   },
   {
-    img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=700&q=80",
+    img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=560&q=70&auto=format",
     label: "System Architecture",
     span: "",
   },
   {
-    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=80",
+    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=560&q=70&auto=format",
     label: "Circuit Logic",
     span: "",
   },
@@ -93,6 +93,8 @@ export default function Explorations() {
               <img
                 src={item.img}
                 alt={item.label}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
 

@@ -1,17 +1,23 @@
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import "./index.css";
 import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
-import Work from "./components/Work";
-import Journal from "./components/Journal";
-import Explorations from "./components/Explorations";
-import Stats from "./components/Stats";
-import Footer from "./components/Footer";
-import BlogPost from "./components/BlogPost";
 import { getPostBySlug } from "./data/blogPosts";
+
+// Code-split heavier / below-the-fold sections so they don't block the first paint
+const Work = lazy(() => import("./components/Work"));
+const Journal = lazy(() => import("./components/Journal"));
+const Explorations = lazy(() => import("./components/Explorations"));
+const Stats = lazy(() => import("./components/Stats"));
+const Footer = lazy(() => import("./components/Footer"));
+const BlogPost = lazy(() => import("./components/BlogPost"));
+
+const SectionFallback = () => (
+  <div className="bg-bg py-24" aria-hidden="true" />
+);
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +41,6 @@ export default function App() {
   };
 
   const closePost = () => {
-    // Clear the hash without jumping the page
     history.pushState("", document.title, window.location.pathname + window.location.search);
     setSelectedSlug(null);
   };
@@ -54,21 +59,25 @@ export default function App() {
         <>
           <Navbar />
           {post ? (
-            <BlogPost
-              key={post.slug}
-              post={post}
-              onBack={closePost}
-              onSelectPost={openPost}
-            />
+            <Suspense fallback={<SectionFallback />}>
+              <BlogPost
+                key={post.slug}
+                post={post}
+                onBack={closePost}
+                onSelectPost={openPost}
+              />
+            </Suspense>
           ) : (
             <main>
               <Hero />
               <Services />
-              <Work />
-              <Journal onSelectPost={openPost} />
-              <Explorations />
-              <Stats />
-              <Footer />
+              <Suspense fallback={<SectionFallback />}>
+                <Work />
+                <Journal onSelectPost={openPost} />
+                <Explorations />
+                <Stats />
+                <Footer />
+              </Suspense>
             </main>
           )}
         </>

@@ -6,7 +6,7 @@ const projects = [
     italic: "Platform",
     category: "Web + AI",
     year: "2025",
-    img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=640&q=70&auto=format",
     description: "Built a full store with an AI engine that learns what customers want and surfaces it before they search — conversion went up, bounce rate went down.",
   },
   {
@@ -14,7 +14,7 @@ const projects = [
     italic: "Dashboard",
     category: "Web Dev",
     year: "2025",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=70&auto=format",
     description: "Replaced a mess of spreadsheets with a live analytics dashboard. The client now makes decisions in minutes instead of days.",
   },
   {
@@ -22,7 +22,7 @@ const projects = [
     italic: "Bot",
     category: "AI Assistant",
     year: "2024",
-    img: "https://images.unsplash.com/photo-1516110833967-0b5716ca1387?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1516110833967-0b5716ca1387?w=640&q=70&auto=format",
     description: "An AI assistant trained on the company's docs and FAQs. Handles 80% of incoming support tickets with zero human involvement.",
   },
   {
@@ -30,7 +30,7 @@ const projects = [
     italic: "Suite",
     category: "Automation",
     year: "2024",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&q=70&auto=format",
     description: "Stitched together CRM, invoicing, and communications into one clean flow. The team saved 20+ hours a week on tasks they used to do by hand.",
   },
 ];
@@ -84,6 +84,8 @@ export default function Work() {
               <img
                 src={p.img}
                 alt={p.title}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 halftone opacity-20 mix-blend-multiply" />

@@ -52,6 +52,8 @@ export default function Journal({ onSelectPost }: JournalProps) {
                 <img
                   src={post.img}
                   alt={post.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
