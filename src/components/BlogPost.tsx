@@ -221,7 +221,9 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
                 Start on WhatsApp ↗
               </a>
               <a
-                href="mailto:autom8x.systems@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=autom8xsystems@gmail.com&su=Project%20inquiry%20—%20autom8X%20Systems"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-stroke px-7 py-3.5 text-sm text-text-primary hover:bg-surface transition-colors"
               >
                 Email us
