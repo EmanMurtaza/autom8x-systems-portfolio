@@ -4,30 +4,6 @@ const NAV_LINKS = ["Home", "Services", "Work", "Blogs"];
 
 const GRAD = "linear-gradient(135deg, #2563FF 0%, #7C3AED 100%)";
 
-function LogoMark() {
-  return (
-    <svg viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[22px] h-4">
-      <defs>
-        <linearGradient id="ngLogo" x1="0" y1="0" x2="30" y2="22" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#2563FF" />
-          <stop offset="100%" stopColor="#7C3AED" />
-        </linearGradient>
-      </defs>
-      {/* Outer ring — left */}
-      <circle cx="10" cy="11" r="8.5" stroke="url(#ngLogo)" strokeWidth="2.2" />
-      {/* Inner ring accent */}
-      <circle cx="10" cy="11" r="3.5" stroke="url(#ngLogo)" strokeWidth="1.4" />
-      {/* X mark — right */}
-      <line x1="20" y1="4" x2="29.5" y2="18" stroke="url(#ngLogo)" strokeWidth="2.6" strokeLinecap="round" />
-      <line x1="29.5" y1="4" x2="20" y2="18" stroke="url(#ngLogo)" strokeWidth="2.6" strokeLinecap="round" />
-      {/* Pixel accent dots */}
-      <rect x="0.5" y="0.5" width="2" height="2" fill="url(#ngLogo)" rx="0.3" opacity="0.55" />
-      <rect x="3.5" y="0.5" width="2" height="2" fill="url(#ngLogo)" rx="0.3" opacity="0.35" />
-      <rect x="0.5" y="3.5" width="2" height="2" fill="url(#ngLogo)" rx="0.3" opacity="0.25" />
-    </svg>
-  );
-}
-
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("Home");
@@ -76,8 +52,12 @@ export default function Navbar() {
             className="absolute inset-0 rounded-full"
             style={{ background: GRAD, padding: "1.5px" }}
           />
-          <div className="absolute inset-[1.5px] rounded-full bg-bg flex items-center justify-center">
-            <LogoMark />
+          <div className="absolute inset-[1.5px] rounded-full overflow-hidden bg-black flex items-center justify-center">
+            <img
+              src="/logo-badge.png"
+              alt="autom8X Systems"
+              className="w-full h-full object-cover"
+            />
           </div>
         </button>
 
