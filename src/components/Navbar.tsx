@@ -62,12 +62,12 @@ export default function Navbar() {
 
         <div className="hidden sm:block w-px h-5 bg-stroke mx-1" />
 
-        {/* Nav links */}
+        {/* Nav links — hidden on mobile to keep the bar from overflowing */}
         {NAV_IDS.map((id, i) => (
           <button
             key={id}
             onClick={() => scrollTo(id)}
-            className={`text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 transition-colors duration-200 ${
+            className={`hidden sm:inline-flex text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 transition-colors duration-200 ${
               active === id
                 ? "text-text-primary bg-stroke/50"
                 : "text-muted hover:text-text-primary hover:bg-stroke/50"
