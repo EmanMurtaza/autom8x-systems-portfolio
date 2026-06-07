@@ -1,11 +1,16 @@
 import { motion } from "framer-motion";
-import { blogPosts } from "../data/blogPosts";
+import { getBlogPosts } from "../data/blogPosts";
+import { useT, useLanguage } from "../context/LanguageContext";
 
 interface JournalProps {
   onSelectPost: (slug: string) => void;
 }
 
 export default function Journal({ onSelectPost }: JournalProps) {
+  const t = useT();
+  const { lang } = useLanguage();
+  const posts = getBlogPosts(lang);
+
   return (
     <section id="blogs" className="bg-bg py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
@@ -19,26 +24,26 @@ export default function Journal({ onSelectPost }: JournalProps) {
           <div>
             <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-px bg-stroke" />
-              <span className="text-xs text-muted uppercase tracking-[0.3em]">Insights</span>
+              <span className="text-xs text-muted uppercase tracking-[0.3em]">{t.journal.eyebrow}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
-              Straight{" "}
-              <em className="font-display not-italic italic neon-soft">talk</em>
+              {t.journal.heading}{" "}
+              <em className="font-display not-italic italic neon-soft">{t.journal.headingItalic}</em>
             </h2>
             <p className="text-muted text-sm mt-3 max-w-md">
-              No fluff — just honest takes on AI, automation, and building things that last.
+              {t.journal.sub}
             </p>
           </div>
           <button
-            onClick={() => onSelectPost(blogPosts[0].slug)}
+            onClick={() => onSelectPost(posts[0].slug)}
             className="hidden md:inline-flex items-center gap-2 rounded-full border border-stroke px-5 py-2.5 text-sm text-muted hover:text-text-primary transition-colors duration-300"
           >
-            Read all →
+            {t.journal.readAll}
           </button>
         </motion.div>
 
         <div className="flex flex-col gap-3">
-          {blogPosts.map((post, i) => (
+          {posts.map((post, i) => (
             <motion.article
               key={post.slug}
               initial={{ opacity: 0, y: 20 }}

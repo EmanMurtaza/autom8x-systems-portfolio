@@ -1,39 +1,5 @@
 import { motion } from "framer-motion";
-
-const projects = [
-  {
-    title: "E-Commerce AI Platform",
-    italic: "Platform",
-    category: "Web + AI",
-    year: "2025",
-    img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=640&q=70&auto=format",
-    description: "Built a full store with an AI engine that learns what customers want and surfaces it before they search — conversion went up, bounce rate went down.",
-  },
-  {
-    title: "SaaS Dashboard",
-    italic: "Dashboard",
-    category: "Web Dev",
-    year: "2025",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&q=70&auto=format",
-    description: "Replaced a mess of spreadsheets with a live analytics dashboard. The client now makes decisions in minutes instead of days.",
-  },
-  {
-    title: "Customer Support Bot",
-    italic: "Bot",
-    category: "AI Assistant",
-    year: "2024",
-    img: "https://images.unsplash.com/photo-1516110833967-0b5716ca1387?w=640&q=70&auto=format",
-    description: "An AI assistant trained on the company's docs and FAQs. Handles 80% of incoming support tickets with zero human involvement.",
-  },
-  {
-    title: "Workflow Automation Suite",
-    italic: "Suite",
-    category: "Automation",
-    year: "2024",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&q=70&auto=format",
-    description: "Stitched together CRM, invoicing, and communications into one clean flow. The team saved 20+ hours a week on tasks they used to do by hand.",
-  },
-];
+import { useT } from "../context/LanguageContext";
 
 const colSpanClass = [
   "md:col-span-7",
@@ -43,6 +9,9 @@ const colSpanClass = [
 ];
 
 export default function Work() {
+  const t = useT();
+  const { projects } = t.work;
+
   return (
     <section id="work" className="bg-bg py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
@@ -56,18 +25,18 @@ export default function Work() {
           <div>
             <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-px bg-stroke" />
-              <span className="text-xs text-muted uppercase tracking-[0.3em]">Selected Work</span>
+              <span className="text-xs text-muted uppercase tracking-[0.3em]">{t.work.eyebrow}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
-              Things we've{" "}
-              <em className="font-display not-italic italic neon-soft">shipped</em>
+              {t.work.heading}{" "}
+              <em className="font-display not-italic italic neon-soft">{t.work.headingItalic}</em>
             </h2>
             <p className="text-muted text-sm mt-3 max-w-md">
-              Real projects, real results. Here's a taste of what we've built.
+              {t.work.sub}
             </p>
           </div>
           <span className="hidden md:inline-flex relative group items-center gap-2 rounded-full border border-stroke px-5 py-2.5 text-sm text-muted cursor-default overflow-visible">
-            View all work →
+            {t.work.viewAll}
           </span>
         </motion.div>
 
@@ -107,7 +76,7 @@ export default function Work() {
                 </p>
                 <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="inline-flex items-center gap-2 text-xs px-4 py-2 rounded-full border border-white/20 text-text-primary/80">
-                    View project →
+                    {t.work.viewProject}
                   </span>
                 </div>
               </div>

@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import HeroVideo from "./HeroVideo";
+import { useT } from "../context/LanguageContext";
 
-const ROLES = ["automate", "innovate", "elevate", "scale"];
 const GRAD = "linear-gradient(135deg, #2563FF 0%, #7C3AED 100%)";
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const blurRefs = useRef<(HTMLElement | null)[]>([]);
+  const t = useT();
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -29,11 +30,12 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
+    setRoleIndex(0);
     const interval = setInterval(() => {
-      setRoleIndex((i) => (i + 1) % ROLES.length);
+      setRoleIndex((i) => (i + 1) % t.hero.roles.length);
     }, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [t.hero.roles]);
 
   const addBlurRef = (el: HTMLElement | null, i: number) => {
     blurRefs.current[i] = el;
@@ -44,7 +46,6 @@ export default function Hero() {
       <HeroVideo overlayClass="bg-black/30" />
       <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg to-transparent z-10" />
 
-      {/* Content — pt-24 keeps eyebrow below navbar, pb-24 keeps buttons above SCROLL */}
       <div className="relative z-20 flex flex-col items-center text-center px-4 pt-24 pb-24 w-full">
 
         <span
@@ -52,11 +53,10 @@ export default function Hero() {
           className="text-xs text-muted uppercase tracking-[0.35em] mb-6 opacity-0 flex items-center gap-3"
         >
           <span className="w-6 h-px bg-muted/40" />
-          Automate · Innovate · Elevate
+          {t.hero.eyebrow}
           <span className="w-6 h-px bg-muted/40" />
         </span>
 
-        {/* Orbitron cyberpunk heading */}
         <h1
           ref={nameRef}
           className="font-orbitron font-black uppercase tracking-tight leading-none text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-6 opacity-0 neon-text"
@@ -68,22 +68,21 @@ export default function Hero() {
           ref={(el) => addBlurRef(el, 1)}
           className="text-base md:text-lg text-muted mb-3 opacity-0"
         >
-          We{" "}
+          {t.hero.taglinePrefix && <>{t.hero.taglinePrefix}{" "}</>}
           <span
-            key={roleIndex}
+            key={`${roleIndex}-${t.hero.roles[roleIndex]}`}
             className="font-display italic text-text-primary animate-role-fade-in inline-block"
           >
-            {ROLES[roleIndex]}
+            {t.hero.roles[roleIndex]}
           </span>{" "}
-          your business — without the headache.
+          {t.hero.taglineSuffix}
         </p>
 
         <p
           ref={(el) => addBlurRef(el, 2)}
           className="text-sm md:text-base text-muted max-w-lg mb-10 opacity-0 leading-relaxed"
         >
-          From AI-powered websites to custom automations that run 24/7 — we
-          build the systems that give you your time back and your business an edge.
+          {t.hero.description}
         </p>
 
         <div ref={(el) => addBlurRef(el, 3)} className="inline-flex gap-4 opacity-0">
@@ -98,7 +97,7 @@ export default function Hero() {
             <span className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{ background: GRAD, zIndex: -1 }} />
             <span className="relative z-10 group-hover:bg-bg group-hover:text-text-primary bg-text-primary text-bg rounded-full transition-colors duration-300">
-              See what we do
+              {t.hero.ctaPrimary}
             </span>
           </a>
 
@@ -110,14 +109,13 @@ export default function Hero() {
           >
             <span className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{ background: GRAD, zIndex: -1 }} />
-            <span className="relative z-10">Let's talk ↗</span>
+            <span className="relative z-10">{t.hero.ctaSecondary}</span>
           </a>
         </div>
       </div>
 
-      {/* Scroll — absolutely positioned, won't overlap buttons because of pb-24 */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
-        <span className="text-xs text-muted uppercase tracking-[0.2em]">SCROLL</span>
+        <span className="text-xs text-muted uppercase tracking-[0.2em]">{t.hero.scroll}</span>
         <div className="relative w-px h-10 bg-stroke overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full accent-gradient animate-scroll-down" />
         </div>

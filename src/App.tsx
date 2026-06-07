@@ -6,8 +6,8 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
 import { getPostBySlug } from "./data/blogPosts";
+import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 
-// Code-split heavier / below-the-fold sections so they don't block the first paint
 const Work = lazy(() => import("./components/Work"));
 const Journal = lazy(() => import("./components/Journal"));
 const Explorations = lazy(() => import("./components/Explorations"));
@@ -19,11 +19,11 @@ const SectionFallback = () => (
   <div className="bg-bg py-24" aria-hidden="true" />
 );
 
-export default function App() {
+function AppInner() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+  const { lang } = useLanguage();
 
-  // Read slug from URL hash on mount + on hash changes (so the back button works)
   useEffect(() => {
     const sync = () => {
       const hash = window.location.hash;
@@ -45,7 +45,7 @@ export default function App() {
     setSelectedSlug(null);
   };
 
-  const post = selectedSlug ? getPostBySlug(selectedSlug) : undefined;
+  const post = selectedSlug ? getPostBySlug(selectedSlug, lang) : undefined;
 
   return (
     <>
@@ -83,5 +83,13 @@ export default function App() {
         </>
       )}
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppInner />
+    </LanguageProvider>
   );
 }

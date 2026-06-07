@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import type { BlogPost as BlogPostType } from "../data/blogPosts";
-import { blogPosts } from "../data/blogPosts";
+import { getBlogPosts } from "../data/blogPosts";
+import { useT, useLanguage } from "../context/LanguageContext";
 
 const GRAD = "linear-gradient(135deg, #2563FF 0%, #7C3AED 100%)";
 
@@ -12,13 +13,16 @@ interface BlogPostProps {
 }
 
 export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) {
+  const t = useT();
+  const { lang } = useLanguage();
+  const bt = t.blogPost;
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, [post.slug]);
 
-  const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const related = getBlogPosts(lang).filter((p) => p.slug !== post.slug).slice(0, 3);
 
-  // Split title around italicized word
   const titleParts = post.title.split(post.italicWord);
 
   return (
@@ -32,7 +36,7 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
           onClick={onBack}
           className="inline-flex items-center gap-2 rounded-full border border-stroke px-4 py-2 text-xs text-muted hover:text-text-primary hover:border-muted/50 transition-colors duration-300 mb-10"
         >
-          ← Back to home
+          {bt.backToHome}
         </motion.button>
 
         {/* Title block */}
@@ -44,7 +48,7 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
         >
           <div className="flex items-center gap-3 mb-5">
             <div className="w-8 h-px bg-stroke" />
-            <span className="text-xs text-muted uppercase tracking-[0.3em]">Insights</span>
+            <span className="text-xs text-muted uppercase tracking-[0.3em]">{bt.eyebrow}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-body font-light text-text-primary leading-[1.1] tracking-tight mb-7">
@@ -62,10 +66,7 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-muted">
             <div className="flex items-center gap-2">
-              <div
-                className="w-7 h-7 rounded-full"
-                style={{ background: GRAD }}
-              />
+              <div className="w-7 h-7 rounded-full" style={{ background: GRAD }} />
               <span className="text-text-primary/80">{post.author}</span>
             </div>
             <span className="w-1 h-1 rounded-full bg-muted/40" />
@@ -74,10 +75,7 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
             <span>{post.readTime}</span>
             <div className="hidden sm:flex items-center gap-2 ml-3 pl-3 border-l border-stroke">
               {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-[10px] tracking-[0.2em] uppercase text-muted/80"
-                >
+                <span key={tag} className="text-[10px] tracking-[0.2em] uppercase text-muted/80">
                   {tag}
                 </span>
               ))}
@@ -85,18 +83,14 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
           </div>
         </motion.header>
 
-        {/* Hero image — editorial card, not full bleed */}
+        {/* Hero image */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15 }}
           className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-14 md:mb-20 border border-stroke"
         >
-          <img
-            src={post.img}
-            alt={post.title}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+          <img src={post.img} alt={post.title} className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 halftone opacity-15 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-bg/40 to-transparent" />
         </motion.div>
@@ -119,20 +113,14 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
               {post.content.map((block, i) => {
                 if (block.type === "h2") {
                   return (
-                    <h2
-                      key={i}
-                      className="text-2xl md:text-[28px] font-body font-medium text-text-primary mt-14 mb-1 leading-snug tracking-tight"
-                    >
+                    <h2 key={i} className="text-2xl md:text-[28px] font-body font-medium text-text-primary mt-14 mb-1 leading-snug tracking-tight">
                       {block.text}
                     </h2>
                   );
                 }
                 if (block.type === "p") {
                   return (
-                    <p
-                      key={i}
-                      className="text-[17px] md:text-[18px] leading-[1.75] text-text-primary/75"
-                    >
+                    <p key={i} className="text-[17px] md:text-[18px] leading-[1.75] text-text-primary/75">
                       {block.text}
                     </p>
                   );
@@ -141,14 +129,8 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
                   return (
                     <ul key={i} className="space-y-3.5 my-2 pl-1">
                       {block.items?.map((item, j) => (
-                        <li
-                          key={j}
-                          className="flex gap-4 text-[17px] md:text-[18px] text-text-primary/75 leading-[1.7]"
-                        >
-                          <span
-                            className="mt-2.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                            style={{ background: GRAD }}
-                          />
+                        <li key={j} className="flex gap-4 text-[17px] md:text-[18px] text-text-primary/75 leading-[1.7]">
+                          <span className="mt-2.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: GRAD }} />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -157,11 +139,7 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
                 }
                 if (block.type === "quote") {
                   return (
-                    <blockquote
-                      key={i}
-                      className="my-12 pl-7 pr-2 py-2 border-l-2 text-2xl md:text-[28px] italic font-display text-text-primary leading-[1.35]"
-                      style={{ borderColor: "#7C3AED" }}
-                    >
+                    <blockquote key={i} className="my-12 pl-7 pr-2 py-2 border-l-2 text-2xl md:text-[28px] italic font-display text-text-primary leading-[1.35]" style={{ borderColor: "#7C3AED" }}>
                       "{block.text}"
                     </blockquote>
                   );
@@ -170,13 +148,9 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
               })}
             </div>
 
-            {/* Tag pills below article */}
             <div className="flex flex-wrap gap-2 mt-16 pt-8 border-t border-stroke">
               {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs px-3 py-1.5 rounded-full bg-surface border border-stroke text-muted"
-                >
+                <span key={tag} className="text-xs px-3 py-1.5 rounded-full bg-surface border border-stroke text-muted">
                   #{tag.toLowerCase().replace(/\s+/g, "-")}
                 </span>
               ))}
@@ -194,21 +168,16 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
           transition={{ duration: 0.7 }}
           className="relative mt-24 rounded-3xl border border-stroke bg-surface/40 overflow-hidden"
         >
-          <div
-            className="absolute inset-0 opacity-[0.08]"
-            style={{ background: GRAD }}
-          />
+          <div className="absolute inset-0 opacity-[0.08]" style={{ background: GRAD }} />
           <div className="relative p-10 md:p-14 text-center max-w-2xl mx-auto">
-            <p className="text-xs uppercase tracking-[0.3em] text-muted mb-4">
-              Want this for your business?
-            </p>
+            <p className="text-xs uppercase tracking-[0.3em] text-muted mb-4">{bt.ctaEyebrow}</p>
             <h3 className="text-3xl md:text-4xl font-body font-light mb-4 text-text-primary">
-              Let's{" "}
-              <em className="font-display not-italic italic neon-soft">build</em>{" "}
-              something.
+              {bt.ctaHeadingPrefix}{" "}
+              <em className="font-display not-italic italic neon-soft">{bt.ctaHeadingItalic}</em>{" "}
+              {bt.ctaHeadingSuffix}
             </h3>
             <p className="text-muted text-sm md:text-base mb-8 max-w-md mx-auto leading-relaxed">
-              Tell us what's slowing you down. We'll tell you exactly how we'd fix it.
+              {bt.ctaSub}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
@@ -218,7 +187,7 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
                 className="inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium text-white transition-transform hover:scale-105"
                 style={{ background: GRAD }}
               >
-                Start on WhatsApp ↗
+                {bt.ctaWhatsapp}
               </a>
               <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=autom8xsystems@gmail.com&su=Project%20inquiry%20—%20autom8X%20Systems"
@@ -226,7 +195,7 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-stroke px-7 py-3.5 text-sm text-text-primary hover:bg-surface transition-colors"
               >
-                Email us
+                {bt.ctaEmail}
               </a>
             </div>
           </div>
@@ -239,20 +208,18 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
               <div>
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-8 h-px bg-stroke" />
-                  <span className="text-xs text-muted uppercase tracking-[0.3em]">
-                    Keep reading
-                  </span>
+                  <span className="text-xs text-muted uppercase tracking-[0.3em]">{bt.keepReading}</span>
                 </div>
                 <h3 className="text-2xl md:text-3xl font-body font-light text-text-primary">
-                  More from the{" "}
-                  <em className="font-display not-italic italic neon-soft">journal</em>
+                  {bt.moreFromPrefix}{" "}
+                  <em className="font-display not-italic italic neon-soft">{bt.moreFromItalic}</em>
                 </h3>
               </div>
               <button
                 onClick={onBack}
                 className="hidden md:inline-flex items-center gap-2 rounded-full border border-stroke px-5 py-2.5 text-sm text-muted hover:text-text-primary transition-colors duration-300"
               >
-                All posts →
+                {bt.allPosts}
               </button>
             </div>
 
@@ -266,11 +233,7 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
                   className="group text-left bg-surface/40 border border-stroke rounded-2xl overflow-hidden hover:border-muted/50 transition-colors duration-300"
                 >
                   <div className="aspect-[16/10] overflow-hidden">
-                    <img
-                      src={rp.img}
-                      alt={rp.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                    <img src={rp.img} alt={rp.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div className="p-5">
                     <div className="flex items-center gap-2 text-xs text-muted mb-3">
@@ -282,7 +245,7 @@ export default function BlogPost({ post, onBack, onSelectPost }: BlogPostProps) 
                       {rp.title}
                     </h4>
                     <span className="text-xs text-muted group-hover:text-text-primary transition-colors">
-                      Read article →
+                      {bt.readArticle}
                     </span>
                   </div>
                 </motion.button>

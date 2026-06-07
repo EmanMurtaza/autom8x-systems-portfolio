@@ -1,43 +1,5 @@
 import { motion } from "framer-motion";
-
-const services = [
-  {
-    id: "01",
-    title: "Web Development",
-    italic: "Development",
-    description:
-      "Your website should work as hard as you do. We build fast, beautiful, custom web apps — from sharp landing pages to full SaaS platforms — that actually convert.",
-    tags: ["React", "Next.js", "Node.js", "TypeScript"],
-    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=640&q=70&auto=format",
-  },
-  {
-    id: "02",
-    title: "AI Solutions",
-    italic: "Solutions",
-    description:
-      "Stop leaving AI on the table. We plug real intelligence into your product — smarter search, predictive features, custom LLM workflows — so you stay ahead of the curve.",
-    tags: ["LLMs", "RAG", "Fine-tuning", "Vector Search"],
-    img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=640&q=70&auto=format",
-  },
-  {
-    id: "03",
-    title: "Business Automation",
-    italic: "Automation",
-    description:
-      "If your team is doing something on repeat, we can automate it. We connect your tools, clean up your workflows, and build pipelines that just run — no babysitting required.",
-    tags: ["n8n", "Zapier", "Make", "APIs"],
-    img: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=640&q=70&auto=format",
-  },
-  {
-    id: "04",
-    title: "AI Assistants",
-    italic: "Assistants",
-    description:
-      "What if your best team member never slept? We build AI assistants trained on your business — handling support, qualifying leads, and answering questions at any hour.",
-    tags: ["Chatbots", "Voice AI", "Knowledge Base", "CRM"],
-    img: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=640&q=70&auto=format",
-  },
-];
+import { useT } from "../context/LanguageContext";
 
 const colSpanClass = [
   "md:col-span-7",
@@ -47,6 +9,9 @@ const colSpanClass = [
 ];
 
 export default function Services() {
+  const t = useT();
+  const { items } = t.services;
+
   return (
     <section id="services" className="bg-bg py-12 md:py-16">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
@@ -60,14 +25,14 @@ export default function Services() {
           <div>
             <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-px bg-stroke" />
-              <span className="text-xs text-muted uppercase tracking-[0.3em]">What We Do</span>
+              <span className="text-xs text-muted uppercase tracking-[0.3em]">{t.services.eyebrow}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
-              Our core{" "}
-              <em className="font-display not-italic italic neon-soft">services</em>
+              {t.services.heading}{" "}
+              <em className="font-display not-italic italic neon-soft">{t.services.headingItalic}</em>
             </h2>
             <p className="text-muted text-sm mt-3 max-w-md">
-              Everything your business needs to move faster and work smarter.
+              {t.services.sub}
             </p>
           </div>
           <a
@@ -83,13 +48,13 @@ export default function Services() {
               style={{ background: "linear-gradient(135deg, #2563FF 0%, #7C3AED 100%)", zIndex: -1 }}
             />
             <span className="relative z-10 flex items-center gap-2 bg-bg rounded-full px-5 py-2.5 -mx-5 -my-2.5 group-hover:bg-bg transition-colors">
-              Get in touch →
+              {t.services.cta}
             </span>
           </a>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
-          {services.map((s, i) => (
+          {items.map((s, i) => (
             <motion.div
               key={s.id}
               initial={{ opacity: 0, y: 40 }}

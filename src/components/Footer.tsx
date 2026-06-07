@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import HeroVideo from "./HeroVideo";
+import { useT } from "../context/LanguageContext";
 
-const MARQUEE_TEXT = "AUTOMATE • INNOVATE • ELEVATE • ";
 const GRAD = "linear-gradient(135deg, #2563FF 0%, #7C3AED 100%)";
 const WA_NUMBER = "923425194397";
 const WA_MESSAGE = encodeURIComponent("Hi! I'd like to learn more about autom8X Systems services.");
@@ -36,6 +36,7 @@ const socialLinks = [
 
 export default function Footer() {
   const marqueeRef = useRef<HTMLDivElement>(null);
+  const t = useT();
 
   useEffect(() => {
     if (!marqueeRef.current) return;
@@ -52,7 +53,7 @@ export default function Footer() {
           <div ref={marqueeRef} className="flex whitespace-nowrap" style={{ width: "200%" }}>
             {Array.from({ length: 20 }).map((_, i) => (
               <span key={i} className="text-4xl md:text-6xl lg:text-7xl font-display italic text-text-primary/10 mr-6">
-                {MARQUEE_TEXT}
+                {t.footer.marquee}
               </span>
             ))}
           </div>
@@ -63,17 +64,16 @@ export default function Footer() {
           <div className="text-center mb-16 md:mb-20">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-px bg-stroke" />
-              <span className="text-xs text-muted uppercase tracking-[0.3em]">Get in Touch</span>
+              <span className="text-xs text-muted uppercase tracking-[0.3em]">{t.footer.eyebrow}</span>
               <div className="w-8 h-px bg-stroke" />
             </div>
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-display italic mb-4 leading-tight neon-text">
-              Let's build together
+              {t.footer.heading}
             </h2>
             <p className="text-muted text-sm md:text-base max-w-md mx-auto mb-10">
-              Got a project in mind? Drop us a message — we respond fast and love a good challenge.
+              {t.footer.sub}
             </p>
 
-            {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* Email */}
               <a
@@ -100,7 +100,7 @@ export default function Footer() {
                 style={{ background: GRAD }}
               >
                 <WhatsAppIcon />
-                Ask us anything on WhatsApp
+                {t.footer.whatsapp}
               </a>
             </div>
           </div>
@@ -131,7 +131,7 @@ export default function Footer() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
               </span>
-              <span className="text-xs text-muted">Available for projects</span>
+              <span className="text-xs text-muted">{t.footer.available}</span>
             </div>
           </div>
         </div>
