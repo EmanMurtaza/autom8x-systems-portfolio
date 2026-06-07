@@ -4,7 +4,7 @@ import HeroVideo from "./HeroVideo";
 import { useT } from "../context/LanguageContext";
 
 const GRAD = "linear-gradient(135deg, #2563FF 0%, #7C3AED 100%)";
-const WA_NUMBER = "923425194397";
+const WA_NUMBERS = ["923425194397", "923338593111"];
 const WA_MESSAGE = encodeURIComponent("Hi! I'd like to learn more about autom8X Systems services.");
 
 function WhatsAppIcon() {
@@ -92,16 +92,19 @@ export default function Footer() {
               </a>
 
               {/* WhatsApp */}
-              <a
-                href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex relative group items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-medium text-white overflow-visible transition-all duration-300 hover:scale-105"
-                style={{ background: GRAD }}
-              >
-                <WhatsAppIcon />
-                {t.footer.whatsapp}
-              </a>
+              {WA_NUMBERS.map((num) => (
+                <a
+                  key={num}
+                  href={`https://wa.me/${num}?text=${WA_MESSAGE}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex relative group items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-medium text-white overflow-visible transition-all duration-300 hover:scale-105"
+                  style={{ background: GRAD }}
+                >
+                  <WhatsAppIcon />
+                  +{num}
+                </a>
+              ))}
             </div>
           </div>
 
