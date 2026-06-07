@@ -42,32 +42,25 @@ export default function Navbar() {
         {/* Logo */}
         <button
           onClick={() => scrollTo("home")}
-          className="relative w-9 h-9 rounded-full flex items-center justify-center group"
+          className="relative w-9 h-9 rounded-full flex items-center justify-center group flex-shrink-0"
           style={{ transition: "transform 0.2s" }}
           onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
           onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
         >
-          <div
-            className="absolute inset-0 rounded-full"
-            style={{ background: GRAD, padding: "1.5px" }}
-          />
+          <div className="absolute inset-0 rounded-full" style={{ background: GRAD, padding: "1.5px" }} />
           <div className="absolute inset-[1.5px] rounded-full overflow-hidden bg-black flex items-center justify-center">
-            <img
-              src="/logo-badge.png"
-              alt="autom8X Systems"
-              className="w-full h-full object-cover"
-            />
+            <img src="/logo-badge.png" alt="autom8X Systems" className="w-full h-full object-cover" />
           </div>
         </button>
 
         <div className="hidden sm:block w-px h-5 bg-stroke mx-1" />
 
-        {/* Nav links — hidden on mobile to keep the bar from overflowing */}
+        {/* Nav links */}
         {NAV_IDS.map((id, i) => (
           <button
             key={id}
             onClick={() => scrollTo(id)}
-            className={`hidden sm:inline-flex text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 transition-colors duration-200 ${
+            className={`text-[10px] sm:text-sm rounded-full px-2 sm:px-4 py-1.5 sm:py-2 transition-colors duration-200 ${
               active === id
                 ? "text-text-primary bg-stroke/50"
                 : "text-muted hover:text-text-primary hover:bg-stroke/50"
@@ -79,26 +72,32 @@ export default function Navbar() {
 
         <div className="hidden sm:block w-px h-5 bg-stroke mx-1" />
 
-        {/* Language toggle pill */}
+        {/* Mobile: compact single-label toggle */}
         <button
           onClick={toggleLang}
           aria-label="Toggle language"
-          className="flex items-center rounded-full border border-stroke/70 p-0.5 bg-black/20 hover:border-stroke transition-colors duration-200 cursor-pointer"
+          className="sm:hidden text-[10px] font-mono tracking-wider rounded-full border border-stroke/60 px-2 py-1 text-muted hover:text-text-primary transition-colors duration-200 mx-1"
+        >
+          {lang === "en" ? "ES" : "EN"}
+        </button>
+
+        {/* Desktop: full EN|ES pill toggle */}
+        <button
+          onClick={toggleLang}
+          aria-label="Toggle language"
+          className="hidden sm:flex items-center rounded-full border border-stroke/70 p-0.5 bg-black/20 hover:border-stroke transition-colors duration-200 cursor-pointer"
         >
           {(["en", "es"] as const).map((l) => {
             const isActive = lang === l;
             return (
               <span
                 key={l}
-                className={`relative text-[10px] sm:text-[11px] font-mono tracking-widest px-2.5 py-1 rounded-full transition-all duration-200 ${
+                className={`relative text-[11px] font-mono tracking-widest px-2.5 py-1 rounded-full transition-all duration-200 ${
                   isActive ? "text-white" : "text-muted"
                 }`}
               >
                 {isActive && (
-                  <span
-                    className="absolute inset-0 rounded-full"
-                    style={{ background: GRAD }}
-                  />
+                  <span className="absolute inset-0 rounded-full" style={{ background: GRAD }} />
                 )}
                 <span className="relative z-10 uppercase">{l}</span>
               </span>
@@ -106,16 +105,16 @@ export default function Navbar() {
           })}
         </button>
 
+        {/* Contact — hidden on mobile (reachable via footer), visible on sm+ */}
         <div className="hidden sm:block w-px h-5 bg-stroke mx-1" />
 
-        {/* Contact */}
         <a
           href="#contact"
           onClick={(e) => {
             e.preventDefault();
             scrollTo("contact");
           }}
-          className="relative text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-muted hover:text-text-primary group overflow-visible"
+          className="hidden sm:inline-flex relative text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-muted hover:text-text-primary group overflow-visible"
         >
           <span
             className="absolute inset-[-2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
