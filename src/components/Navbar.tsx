@@ -7,7 +7,7 @@ const GRAD = "linear-gradient(135deg, #2563FF 0%, #7C3AED 100%)";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
-  const { toggleLang } = useLanguage();
+  const { lang, toggleLang } = useLanguage();
   const t = useT();
 
   useEffect(() => {
@@ -79,13 +79,31 @@ export default function Navbar() {
 
         <div className="hidden sm:block w-px h-5 bg-stroke mx-1" />
 
-        {/* Language toggle */}
+        {/* Language toggle pill */}
         <button
           onClick={toggleLang}
-          className="text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-muted hover:text-text-primary hover:bg-stroke/50 transition-colors duration-200 font-mono tracking-wider"
           aria-label="Toggle language"
+          className="flex items-center rounded-full border border-stroke/70 p-0.5 bg-black/20 hover:border-stroke transition-colors duration-200 cursor-pointer"
         >
-          {t.navbar.langToggle}
+          {(["en", "es"] as const).map((l) => {
+            const isActive = lang === l;
+            return (
+              <span
+                key={l}
+                className={`relative text-[10px] sm:text-[11px] font-mono tracking-widest px-2.5 py-1 rounded-full transition-all duration-200 ${
+                  isActive ? "text-white" : "text-muted"
+                }`}
+              >
+                {isActive && (
+                  <span
+                    className="absolute inset-0 rounded-full"
+                    style={{ background: GRAD }}
+                  />
+                )}
+                <span className="relative z-10 uppercase">{l}</span>
+              </span>
+            );
+          })}
         </button>
 
         <div className="hidden sm:block w-px h-5 bg-stroke mx-1" />
