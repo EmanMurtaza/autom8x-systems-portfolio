@@ -143,6 +143,7 @@ export const translations = {
       sub: "Got a project in mind? Drop us a message — we respond fast and love a good challenge.",
       whatsapp: "Ask us anything on WhatsApp",
       available: "Available for projects",
+      collaborators: "Collaborators",
     },
     blogPost: {
       backToHome: "← Back to home",
@@ -306,6 +307,7 @@ export const translations = {
       sub: "¿Tienes un proyecto en mente? Escríbenos — respondemos rápido y nos encantan los buenos desafíos.",
       whatsapp: "Pregúntanos en WhatsApp",
       available: "Disponibles para proyectos",
+      collaborators: "Colaboradores",
     },
     blogPost: {
       backToHome: "← Volver al inicio",

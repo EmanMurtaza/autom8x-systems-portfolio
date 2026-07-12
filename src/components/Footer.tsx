@@ -108,6 +108,37 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Collaborators */}
+          <div className="mb-16 md:mb-20">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="w-8 h-px bg-stroke" />
+              <span className="text-xs text-muted uppercase tracking-[0.3em]">{t.footer.collaborators}</span>
+              <div className="w-8 h-px bg-stroke" />
+            </div>
+            <div className="flex justify-center">
+              <a
+                href="https://novadev.es"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-4 rounded-2xl border border-stroke px-6 py-4 hover:border-text-primary/40 transition-colors duration-300 group"
+              >
+                <span className="flex items-center justify-center rounded-lg bg-white px-2.5 py-1.5">
+                  <img
+                    src="/novadev-logo.png"
+                    alt="NovaDev logo"
+                    className="h-8 w-auto object-contain"
+                  />
+                </span>
+                <div className="flex flex-col text-left">
+                  <span className="text-sm font-medium text-text-primary">NovaDev</span>
+                  <span className="text-xs text-muted group-hover:text-text-primary transition-colors">
+                    Game Development · novadev.es
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+
           {/* Footer bar */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-stroke">
             <div className="flex items-center gap-4">
