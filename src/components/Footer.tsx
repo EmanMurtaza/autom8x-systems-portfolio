@@ -77,7 +77,7 @@ export default function Footer() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* Email */}
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=autom8xsystems@gmail.com&su=Project%20inquiry%20—%20autom8X%20Systems"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=business@autom8x.systems&su=Project%20inquiry%20—%20autom8X%20Systems"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex relative group items-center gap-2 rounded-full border border-stroke px-7 py-3.5 text-sm text-muted hover:text-text-primary transition-colors duration-300 overflow-visible"
@@ -87,7 +87,7 @@ export default function Footer() {
                   style={{ background: GRAD, zIndex: -1 }}
                 />
                 <span className="relative z-10 flex items-center gap-2 bg-bg rounded-full px-7 py-3.5 -mx-7 -my-3.5 transition-colors">
-                  autom8xsystems@gmail.com ↗
+                  business@autom8x.systems ↗
                 </span>
               </a>
 
